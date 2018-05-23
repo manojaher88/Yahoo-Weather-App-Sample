@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
-// Remote Data Manager
-
+// MARK:- Remote Data Manager
 // Output protocol
 protocol WeatherRemoteDataManagerOutputProtocol: class {
     // Remote Data manager -> Inteactor
@@ -25,7 +25,7 @@ protocol WeatherRemoteDataManagerInputProtocol {
 }
 
 
-// Interactor
+// MARK:- Interactor
 // Input protocol
 protocol WeatherMainScreenInteractorInputProtocol: class {
     var presenter: WeatherMainScreenInteractorOutputProtocol? { get set }
@@ -43,7 +43,7 @@ protocol WeatherMainScreenInteractorOutputProtocol: class {
 }
 
 
-// Presenter
+// MARK:- Presenter
 // Input protocol
 protocol WeatherMainScreenPresenterInputProtocol: class {
     // VIEW -> PRESENTER
@@ -51,10 +51,10 @@ protocol WeatherMainScreenPresenterInputProtocol: class {
     var interactor: WeatherMainScreenInteractorInputProtocol? { get set }
     var wireFrame: WeatherListWireFrameProtocol? { get set }
     func viewDidLoad()
-    func showCitySearchScreen()
+    func showCitySearchScreen(_ navigation: UINavigationController, completionBlock: @escaping CompletionBlock)
 }
 
-// View
+// // MARK:- View
 protocol WeatherMainScreenViewProtocol: class {
     var presenter: WeatherMainScreenPresenterInputProtocol? { get set }
     
@@ -65,6 +65,7 @@ protocol WeatherMainScreenViewProtocol: class {
     func hideLoading()
 }
 
+// // MARK:- Router
 protocol WeatherListWireFrameProtocol {
-    func showSearchView()
+    func pushSearchView(navigationController: UINavigationController, callback: @escaping (Bool, AnyObject?, NSError?) -> Void)
 }

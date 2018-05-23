@@ -12,16 +12,17 @@ class WeatherListWireFrame: NSObject {
     
     class func createWeatherScreenModule()-> UIViewController {
         
-        let presenter = WeatherMainScreenPresenter()
+        let viewController = WeatherAppView(nibName: "WeatherAppView", bundle: nil)
         let interactor = WeatherMainScreenInteractor()
+        let presenter = WeatherMainScreenPresenter()
+        let router = WeatherListWireFrame()
         let remoteDataManager = WeatherListDataManager()
         
-        
-        let viewController = WeatherAppView(nibName: "WeatherAppView", bundle: nil)
         viewController.presenter = presenter
         
         presenter.view = viewController
         presenter.interactor = interactor
+        presenter.wireFrame = router
         
         interactor.presenter = presenter
         interactor.remoteRequestHandler = remoteDataManager
@@ -31,5 +32,11 @@ class WeatherListWireFrame: NSObject {
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
-    
+}
+
+extension WeatherListWireFrame: WeatherListWireFrameProtocol {
+    func pushSearchView(navigationController: UINavigationController, callback: @escaping (Bool, AnyObject?, NSError?) -> Void) {
+        let viewController = SearchLocationWireframe.createSearchLocationModule(callback: callback)
+        navigationController.pushViewController(viewController, animated: true)
+    }
 }

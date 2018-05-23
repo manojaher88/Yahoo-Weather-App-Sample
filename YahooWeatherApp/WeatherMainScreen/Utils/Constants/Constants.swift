@@ -40,3 +40,8 @@ func getQueryString(for location: Location)-> String? {
     }
     return nil
 }
+
+func getLocationSearchString(for string: String)-> String {
+    let query = baseURL + "select * from weather.forecast where woeid in (select woeid from geo.places(0) where text=\"\(string)\") and u=\"c\"&format=json"
+    return query
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchLocationView" customModule="YahooWeatherApp" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="GP9-A0-InG" id="adS-5H-ZQQ"/>
+                <outlet property="tableView" destination="gon-1s-0J8" id="NGb-L2-YUH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gon-1s-0J8">
+                    <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+                <searchBar contentMode="redraw" placeholder="Search City" translatesAutoresizingMaskIntoConstraints="NO" id="GP9-A0-InG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                    <color key="barTintColor" red="0.67843137249999996" green="0.84705882349999995" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="gon-1s-0J8" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="7Ya-gk-uzF"/>
+                <constraint firstItem="GP9-A0-InG" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9hN-UR-AfG"/>
+                <constraint firstItem="GP9-A0-InG" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="RQ6-c1-g1u"/>
+                <constraint firstItem="gon-1s-0J8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="fxf-ht-gCK"/>
+                <constraint firstItem="GP9-A0-InG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hR7-zj-tgE"/>
+                <constraint firstItem="gon-1s-0J8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ubY-EB-lnp"/>
+                <constraint firstItem="gon-1s-0J8" firstAttribute="top" secondItem="GP9-A0-InG" secondAttribute="bottom" id="wzx-yg-gNi"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="81.5"/>
+        </view>
+    </objects>
+</document>

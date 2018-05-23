@@ -18,7 +18,7 @@ class WeatherListDataManager: NSObject, WeatherRemoteDataManagerInputProtocol {
         if let queryString = getQueryString(for: location),
             let newQuery  = queryString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
             let url = URL(string: newQuery) {
-            let urlRequest = URLRequest(url: url, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 30)
+            let urlRequest = URLRequest(url: url, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 60)
             let dataTask = apiManager.makeAPICall(with: urlRequest) {[weak self] (success, response, error) in
                 if let dict = response as? [String: Any] {
                     DispatchQueue.main.async {
@@ -28,7 +28,9 @@ class WeatherListDataManager: NSObject, WeatherRemoteDataManagerInputProtocol {
             }
             dataRequests.append(dataTask)
         } else {
-            requestHandler?.errorOccured()
+            DispatchQueue.main.async {[weak self] in
+                self?.requestHandler?.errorOccured()
+            }
         }
     }
     

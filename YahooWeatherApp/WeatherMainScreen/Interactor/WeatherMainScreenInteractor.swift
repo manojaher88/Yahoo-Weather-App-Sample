@@ -61,25 +61,6 @@ class WeatherMainScreenInteractor: NSObject, WeatherMainScreenInteractorInputPro
         }
     }
     
-    func showAlertMessage(messageTitle: NSString, withMessage: NSString) ->Void  {
-        let alertController = UIAlertController(title: messageTitle as String, message: withMessage as String, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action:UIAlertAction!) in
-            
-        }
-        alertController.addAction(cancelAction)
-        
-        let OKAction = UIAlertAction(title: "Settings", style: .default) { (action:UIAlertAction!) in
-            if let url = URL(string: "App-Prefs:root=Privacy&path=LOCATION/com.company.AppName") {
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                } else {
-                    // Fallback on earlier versions
-                }
-            }
-        }
-        alertController.addAction(OKAction)
-    }
-    
     private func processForecastData(data: [String: Any]) {
         if let query = data["query"] as? [String: Any],
             let results = query["results"] as? [String: Any],

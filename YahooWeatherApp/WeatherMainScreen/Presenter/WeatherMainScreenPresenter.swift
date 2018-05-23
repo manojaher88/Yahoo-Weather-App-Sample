@@ -18,8 +18,8 @@ class WeatherMainScreenPresenter: NSObject, WeatherMainScreenPresenterInputProto
         interactor?.getWeather(for: nil)
     }
     
-    func showCitySearchScreen() {
-        // Present view controller
+    func showCitySearchScreen(_ navigation: UINavigationController, completionBlock: @escaping CompletionBlock) {
+        wireFrame?.pushSearchView(navigationController: navigation, callback: completionBlock)
     }
 }
 

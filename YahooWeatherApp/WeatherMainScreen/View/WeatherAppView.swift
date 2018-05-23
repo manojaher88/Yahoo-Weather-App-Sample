@@ -23,12 +23,18 @@ class WeatherAppView: UIViewController {
     // MARK: View life cycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = false
+        setupNavigationBar()
         setupTableView()
         presenter?.viewDidLoad()
     }
     
     // MARK: Private methods
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.isTranslucent = false
+        let searchButton = UIBarButtonItem(title: "Search", style: .plain, target: self, action: #selector(WeatherAppView.searchTapped))
+        navigationItem.leftBarButtonItem = searchButton
+    }
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -79,6 +85,17 @@ class WeatherAppView: UIViewController {
         }
     }
     
+    @objc func searchTapped() {
+        presenter?.showCitySearchScreen(navigationController!, completionBlock: { (success, response, error) in
+            if let weather = response as? Weather {
+                self.weather = weather
+                self.createTableHeaderView()
+                self.navigationItem.title = weather.location?.city ?? ""
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
     // MARK: Overriden methods
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
@@ -99,7 +116,10 @@ extension WeatherAppView: WeatherMainScreenViewProtocol {
     }
     
     func showError() {
-        
+        let alertController = UIAlertController(title: "Error Occurred", message: "Error while getting yahoo weather report", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     func showLoading() {
